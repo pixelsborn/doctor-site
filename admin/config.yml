@@ -1,8 +1,8 @@
 backend:
-   name: git-gateway
+  name: git-gateway
   branch: main
-  auth_endpoint: "https://willowy-khapse-7d9653.netlify.app/.netlify/identity"
-  
+  auth_endpoint: https://willowy-khapse-7d9653.netlify.app/.netlify/identity
+
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
