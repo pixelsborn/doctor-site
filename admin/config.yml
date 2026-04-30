@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: pixelsborn/doctor-site
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blogs"
+    label: "Blogs"
+    files:
+      - file: "data/posts.json"
+        label: "All Blogs"
+        name: "blogdata"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Slug", name: "slug", widget: "string", hint: "use-small-letters-with-dashes" }
+              - { label: "Date", name: "date", widget: "datetime" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Excerpt", name: "excerpt", widget: "text" }
+              - { label: "Content", name: "content", widget: "text" }
