@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+fetch("wp-posts.json")
+.then(res => res.json())
+.then(posts => {
+
+  function stripHTML(html) {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return div.textContent || div.innerText || "";
+  }
+
+  const clean = posts.map(p => {
+
+    let image = "";
+
+    if (p._embedded?.["wp:featuredmedia"]?.[0]) {
+      image = p._embedded["wp:featuredmedia"][0].source_url;
+    }
+
+    if (!image && p.jetpack_featured_media_url) {
+      image = p.jetpack_featured_media_url;
+    }
+
+    if (!image && p.content?.rendered) {
+      const match = p.content.rendered.match(/<img.*?src="(.*?)"/);
+      if (match) image = match[1];
+    }
+
+    return {
+      slug: p.slug,
+      title: stripHTML(p.title?.rendered || ""),
+      date: p.date,
+      image: image,
+      excerpt: stripHTML(p.excerpt?.rendered || "").substring(0,150),
+      content: p.content?.rendered || ""
+    };
+  });
+
+  console.log(JSON.stringify(clean, null, 2));
+
+});
+</script>
+
+</body>
+</html>
