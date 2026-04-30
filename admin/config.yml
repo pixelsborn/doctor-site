@@ -1,7 +1,7 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: pixelsborn/doctor-site
   branch: main
-  auth_endpoint: https://willowy-khapse-7d9653.netlify.app/.netlify/identity
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
